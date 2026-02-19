@@ -1,0 +1,27 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        # Use npm ci for faster, more reliable installs in CI environments
+        - npm ci
+        # If you were using your custom env scripts, you might run one here,
+        # BUT the recommended approach is using Amplify Env Vars (see point 2)
+        # - npm run prodEnv # Example, but prefer Amplify Env Vars
+    build:
+      commands:
+        # Runs the 'next build' script from your package.json
+        - echo "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=$NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY" >> .env
+        - echo "STRIPE_SECRET_KEY=$STRIPE_SECRET_KEY" >> .env
+        - echo "JWT_SECRET=$JWT_SECRET" >> .env
+        - echo "API_BASE_URL=$API_BASE_URL" >> .env
+        - npm run build
+  artifacts:
+    # Standard output directory for Next.js
+    baseDirectory: .next
+    files:
+      - "**/*"
+  cache:
+    paths:
+      # Cache node_modules for faster subsequent builds
+      - node_modules/**/*

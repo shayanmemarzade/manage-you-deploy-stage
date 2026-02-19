@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+      {
+        "source": "/api/v3/:path*",
+        "destination": "https://cmsstage.manageyouapp.com/api/v3/:path*"
+      }
+    ]
+  }
