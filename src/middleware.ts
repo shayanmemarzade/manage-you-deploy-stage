@@ -78,8 +78,8 @@ export async function middleware(request: NextRequest) {
     }
 
     // Extract user type from token payload
-    // const userType = payload.account_details?.account_type_access || 'INDIVIDUAL';
-    const userType = payload.user_type_id === 4 ? "TEAM_ADMIN" : 'INDIVIDUAL';
+    const userType = payload.account_details?.account_type_access || 'INDIVIDUAL';
+    // const userType = payload.user_type_id === 4 ? "TEAM_ADMIN" : 'INDIVIDUAL';
 
 
     // Create response with updated userType cookie
