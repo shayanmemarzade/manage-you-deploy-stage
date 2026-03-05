@@ -222,7 +222,19 @@ export default function DocumentsPage() {
                     </button>
                 </div>
             </div>
-
+            {!canUpload && <div className="bg-yellow-100 shadow-sm">
+                <div className="py-2 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+                    <h1 className="text-sm font-semibold text-yellow-900">You have used {documents.length} of {FREE_UPLOAD_LIMIT} free uploads</h1>
+                    <button
+                        onClick={() => {
+                            setShowUpgradeModal(true);
+                        }}
+                        className="inline-flex items-center px-3 py-2 border border-transparent text-sm font-normal rounded-md shadow-sm text-white bg-yellow-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    >
+                        Upgrade plan
+                    </button>
+                </div>
+            </div>}
             {/* Main content area with drag-and-drop functionality */}
             <main className="" {...getRootProps()}>
                 <input {...getInputProps()} />

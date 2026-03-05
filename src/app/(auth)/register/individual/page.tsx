@@ -309,7 +309,7 @@ const SignUpPage = () => {
                     </div>
 
                     {/* 💚 Promo Code Section - Refined to match ACTIVE state image */}
-                    {false && <div className="mb-6 text-black">
+                    {<div className="mb-6 text-black">
                         {/* This element remains for the UNCHECKED state from the first image */}
                         {!isPromoActive && (
                             <div
