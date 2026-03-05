@@ -222,7 +222,7 @@ export default function DocumentsPage() {
                     </button>
                 </div>
             </div>
-            {!canUpload && <div className="bg-yellow-100 shadow-sm">
+            {!hasActiveSubscription && <div className="bg-yellow-100 shadow-sm">
                 <div className="py-2 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
                     <h1 className="text-sm font-semibold text-yellow-900">You have used {documents.length} of {FREE_UPLOAD_LIMIT} free uploads</h1>
                     <button
