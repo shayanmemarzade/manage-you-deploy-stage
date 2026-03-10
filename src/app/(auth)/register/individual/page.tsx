@@ -323,13 +323,13 @@ const SignUpPage = () => {
 
                         {/* The MERGED component for the CHECKED (ACTIVE) state */}
                         {isPromoActive && (
-                            <div className="flex w-full mt-3 animate-fadeIn border rounded-md border-green-500 shadow-sm">
+                            <div className="flex flex-wrap w-full mt-3 animate-fadeIn border rounded-md border-green-500 shadow-sm">
 
                                 {/* 1. Green Label/Button Section (Left) */}
                                 <div
                                     // Clickable area to DISABLE/close the promo code input
                                     onClick={() => setIsPromoActive(false)}
-                                    className="flex items-center justify-center bg-green-500 text-white p-3 cursor-pointer rounded-l-md transition-colors hover:bg-green-600"
+                                    className="flex items-center justify-center w-full lg:w-auto bg-green-500 text-white p-3 cursor-pointer rounded-l-md transition-colors hover:bg-green-600"
                                 >
                                     {/* Checkmark Icon */}
                                     <svg className="w-5 h-5 mr-2" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -352,6 +352,7 @@ const SignUpPage = () => {
                                 />
                             </div>
                         )}
+                        <span>Enter your organization code before subscribing.</span>
 
                         {/* Error messages should be placed outside the main container */}
                         {isPromoActive && errors.promoCode && <p className="text-red-500 text-xs mt-1">{errors.promoCode}</p>}
