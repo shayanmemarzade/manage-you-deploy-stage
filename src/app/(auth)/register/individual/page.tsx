@@ -212,6 +212,23 @@ const SignUpPage = () => {
                 dispatch(setAccessToken(response.user?.access_token?.accessToken));
                 dispatch(setUserTypeToken(response.user_info_token))
 
+                // Create Stripe customer + incomplete subscription
+                try {
+                    const stripeRes = await fetch('/api/create-stripe-customer', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            email: formData.email.trim(),
+                            name: `${formData.firstName.trim()} ${formData.lastName.trim()}`,
+                            promotionCodeId: validatedPromo?.promoId || null,
+                        }),
+                    });
+                    const stripeData = await stripeRes.json();
+                    console.log('Stripe setup result:', stripeData);
+                } catch (stripeErr) {
+                    console.error('Stripe setup failed:', stripeErr);
+                }
+
                 router.push('/individual-dashboard');
             } catch (err: any) {
                 // setError(err.message);
