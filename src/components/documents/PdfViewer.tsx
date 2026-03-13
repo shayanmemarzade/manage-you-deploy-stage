@@ -21,14 +21,15 @@ interface PdfViewerProps {
 
 export default function PdfViewer({ filePath, title }: PdfViewerProps) {
     const [numPages, setNumPages] = useState<number | null>(null);
+    const proxiedUrl = `/api/proxy-pdf?url=${encodeURIComponent(filePath)}`;
 
     function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
         setNumPages(numPages);
     }
 
     return (
-        <div className="w-full h-full overflow-y-auto">
-            <Document file={filePath} onLoadSuccess={onDocumentLoadSuccess} onLoadError={console.error}>
+        <div className="w-full max-h-96 lg:max-h-[calc(78vh-2rem)] overflow-y-auto">
+            <Document file={proxiedUrl} onLoadSuccess={onDocumentLoadSuccess} onLoadError={console.error}>
                 {Array.from({ length: numPages || 0 }, (_, index) => (
                     <Page
                         key={`page_${index + 1}`}
@@ -38,6 +39,7 @@ export default function PdfViewer({ filePath, title }: PdfViewerProps) {
                     />
                 ))}
             </Document>
+          
         </div>
     );
 }
