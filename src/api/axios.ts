@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { store } from '@/store';
 import { logout } from '@/store/reducer/auth';
+import { clearDocuments } from '@/store/reducer/documents';
 
 // Create axios instance
 const api = axios.create({
@@ -56,6 +57,7 @@ api.interceptors.response.use(
         if (error.response?.status === 401) {
             // Clear auth state
             store.dispatch(logout());
+            store.dispatch(clearDocuments());
             window.location.href = '/login';
         }
         return Promise.reject(error);

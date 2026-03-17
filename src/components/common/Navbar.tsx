@@ -6,6 +6,7 @@ import { MdOutlineLogout } from "react-icons/md";
 import logoImage from '@/assets/images/logo.png';
 import { authApi } from '@/api/modules/auth';
 import { logout } from '@/store/reducer/auth';
+import { clearDocuments } from '@/store/reducer/documents';
 import { useAppDispatch } from '@/store/hooks';
 import { useRouter } from 'next/navigation';
 
@@ -18,6 +19,7 @@ const Navbar = () => {
         try {
             await authApi.logout();
             dispatch(logout());
+            dispatch(clearDocuments());
             router.push('/login');
         } catch (err: any) {
             console.log("Login erorr")

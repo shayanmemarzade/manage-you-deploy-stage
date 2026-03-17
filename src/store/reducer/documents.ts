@@ -37,8 +37,13 @@ const documentsSlice = createSlice({
         setCurrentDocument(state, action: PayloadAction<Document | null>) {
             state.currentDocument = action.payload;
         },
+        // Clears all documents when auth context changes (login/logout/user switch)
+        clearDocuments(state) {
+            state.documents = [];
+            state.currentDocument = null;
+        },
     },
 });
 
-export const { setDocuments, addDocument, updateDocument, setCurrentDocument } = documentsSlice.actions;
+export const { setDocuments, addDocument, updateDocument, setCurrentDocument, clearDocuments } = documentsSlice.actions;
 export default documentsSlice.reducer;

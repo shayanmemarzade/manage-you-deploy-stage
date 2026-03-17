@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { subscriptionApi } from '@/api/modules/subscription';
 import { setSubscription, setUser, setUserTypeToken } from '@/store/reducer/auth';
+import { clearDocuments } from '@/store/reducer/documents';
 import { useAppDispatch } from '@/store/hooks';
 import { authApi } from '@/api/modules/auth';
 
@@ -58,6 +59,7 @@ export default function SuccessPage() {
                 console.log(auth_res)
                 console.log("******** auth_res response ********")
 
+                dispatch(clearDocuments());
                 dispatch(setUser(auth_res.user));
                 // dispatch(setAccessToken(auth_res.user?.access_token?.accessToken));
                 dispatch(setUserTypeToken(auth_res?.user_info_token))

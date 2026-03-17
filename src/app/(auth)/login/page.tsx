@@ -11,6 +11,7 @@ import { FormHeader } from '@/components/common/onboarding/FormHeader';
 import { FormButton } from '@/components/common/onboarding/FormButton';
 import { authApi } from '@/api/modules/auth';
 import { setAccessToken, setUser, setUserTypeToken } from '@/store/reducer/auth';
+import { clearDocuments } from '@/store/reducer/documents';
 
 import { useAppDispatch } from '@/store/hooks';
 import { useRouter } from 'next/navigation';
@@ -96,6 +97,7 @@ const LoginPage = () => {
 
             try {
                 const response = await authApi.login(formData);
+                dispatch(clearDocuments());
                 dispatch(setUser(response.user));
                 dispatch(setAccessToken(response.user?.access_token?.accessToken ?? response.user?.access_token));
                 dispatch(setUserTypeToken(response.user_info_token))

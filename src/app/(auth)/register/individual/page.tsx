@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { userApi } from '@/api/modules/users';
 import { useAppDispatch } from '@/store/hooks';
 import { setUser, setAccessToken, setUserTypeToken } from '@/store/reducer/auth';
+import { clearDocuments } from '@/store/reducer/documents';
 import CarouselSlide from '@/components/common/onboarding/CarouselSlide';
 import { ONBOARDING_SLIDES } from '@/constants/carouselData';
 import { FormButton } from '@/components/common/onboarding/FormButton';
@@ -208,6 +209,7 @@ const SignUpPage = () => {
 
             try {
                 const response = await userApi.create(params);
+                dispatch(clearDocuments());
                 dispatch(setUser(response.user));
                 dispatch(setAccessToken(response.user?.access_token?.accessToken));
                 dispatch(setUserTypeToken(response.user_info_token))
